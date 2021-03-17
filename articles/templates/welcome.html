@@ -2,15 +2,6 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<section id="hero" class="justify-content-center align-items-center stars0">
-    <div class="container text-center text-md-left" style="position: absolute; top: 50%; left: 26%;" data-aos="fade-up">
-      <h1>Osmar Alcala</h1>
-       <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span></p>
-    </div>
-    <div id='stars'></div>
-<div id='stars2'></div>
-<div id='stars3'></div>
-  </section><!-- End Hero -->
 
   <main id="main">
 
@@ -20,210 +11,20 @@
 
         <div class="section-title">
           <h2>About</h2>
-
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4" data-aos="fade-right">
-            <img src="{% static 'img/profile1.jpg' %}" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>Data Analyst &amp; Full Stack Developer.</h3>
-            <p class="font-italic">
-              I have two + years experience developing in python and linux systems. I like working in multidisciplinary projects. And engaging in the front end and back end design.
+          <h3>Exploring optimal control of epidemic spread using reinforcement learning</h3>
+            <p>Pandemic defnes the global outbreak of a disease having a high transmission rate. The impact of a
+                pandemic situation can be lessened by restricting the movement of the mass. However, one of its
+                concomitant circumstances is an economic crisis. In this article, we demonstrate what actions an
+                agent (trained using reinforcement learning) may take in diferent possible scenarios of a pandemic
+                depending on the spread of disease and economic factors. To train the agent, we design a virtual
+                pandemic scenario closely related to the present COVID-19 crisis. Then, we apply reinforcement
+                learning, a branch of artifcial intelligence, that deals with how an individual (human/machine) should
+                interact on an environment (real/virtual) to achieve the cherished goal. 
             </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> 15 Jan. 1994</li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Website:</strong> www.example.com</li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Phone:</strong> +49 152 106 51 350 </li>
-                  <li><i class="icofont-rounded-right"></i> <strong>City:</strong> City : Aachen, Germany</li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="icofont-rounded-right"></i> <strong>Age:</strong> 26</li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Degree:</strong> Master</li>
-                  <li><i class="icofont-rounded-right"></i> <strong>PhEmailone:</strong> osmar.alcala94@gmail.com</li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Internship:</strong> Available</li>
-                </ul>
-              </div>
-            </div>
-                      <p>I come from Mexico, and I moved to Aachen to study a Master in Data on October 7th 2019. My hobbies are learning  languages,  going out with friends and traveling. I am the eldest of 4 brothers so I consider myself a responsible person. </p>
-            <p>
-              Currently looking for an internship in the field of Data, Maths and Statistics.
-            </p>
-          </div>
         </div>
-
+        {% include "minst.html" %}
       </div>
     </section><!-- End About Section -->
-
-   <!-- ======= Resume Section ======= -->
-    <section id="resume" class="resume">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Resume</h2>
-
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6" data-aos="fade-up">
-            <h3 class="resume-title">Sumary</h3>
-            <div class="resume-item pb-0">
-              <h4>Osmar Alcala</h4>
-              <p><em>Innovative and deadline-driven Full Stack Developer with 2 plus years experience in pythhn.</em></p>
-              <ul>
-                <li>Aachen, Germany</li>
-                <li>(49) 152 106 51 350</li>
-                <li>osmar.alcala94@gmail.com</li>
-              </ul>
-            </div>
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Master of Science &amp; Data Analytics and Desicion Science</h4>
-              <h5>2019 - 2021</h5>
-              <p><em>RWTH Aachen University, Germany</em></p>
-              <p>Currently third semester student, taking courses on Machine Learning, Predicting Modelling,
-Operational Optimization, Data Visualization.</p>
-            </div>
-            <div class="resume-item">
-              <h4>Bachelor of Science &amp; Mechatronics</h4>
-              <h5>2012 - 2017</h5>
-              <p><em>University of Monterrey, Mexico</em></p>
-              <ul>
-                <li> Thesis with Honors </li>
-                Design a robot capable of navigating a room and map it at the
-                same time, implementation of SLAM algorithm in python, and
-                real team control of the robot and sensor data visualization.</li>
-                            <li> 1 % Top students of the Bachelor Program,
-                Recognition granted at the end of every semester based on academic
-                performance </li>
-                <li> Roberto Rocca Education Program Scholarship </li>
-                <li> 90 % Scholarship by academic performance </li>
-                <li> CENEVAL Top 1 % Scores in Mexico’s Final Degree Exam </li>
-</ul>
-            </div>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>DEV-OPS ENGINEER</h4>
-              <h5>2019 - 2019</h5>
-              <p><em>Vauxoo, Colima, Mexico</em></p>
-              <ul>
-                <li>I was part of the team in charge of automating the deploy of python instances </li>
-                <li>Source Control</li>
-                <li>Docker & Linux</li>
-                <li>PostgreSQL</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>DATA MANAGER</h4>
-              <h5>2017 - 2019</h5>
-              <p><em>Skysset, Monterrey, Mexico</em></p>
-              <ul>
-                <li>
-                    SKYSSET is a Start Up of advanced volumetric, my job consists in
-                    administrating a data base of photos, 3D models, and clients,
-                    developing technology to estimate volumes and surfaces based
-                    on 3D point clouds. I manipulated pictures to include names of
-                    materials, ID´s, volume, and any other relevant information so our
-                    clients understand their current inventory not only with a number
-                    in Excel but also in a visual and credible way.
-                </li>
-                <li>Sklearn, Amazon AWS</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>SUPPLY CHAIN INTERN</h4>
-              <h5>2017 - 2017</h5>
-              <p><em>Ternium, Monterrey, Mexico</em></p>
-              <ul>
-                <li>SKYSSET is a Start Up of advanced volumetric, my job consists in
-                administrating a data base of photos, 3D models, and clients,
-                developing technology to estimate volumes and surfaces based
-                on 3D point clouds. I manipulated pictures to include names of
-                materials, ID´s, volume, and any other relevant information so our
-                clients understand their current inventory not only with a number
-                in Excel but also in a visual and credible way.
-</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Resume Section -->
-
-    <!-- ======= Skills Section ======= -->
-    <section id="skills" class="skills section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Skills</h2>
-        </div>
-
-        <div class="row skills-content">
-
-          <div class="col-lg-6" data-aos="fade-up">
-
-            <div class="progress">
-              <span class="skill">HTML/CSS/JS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Python <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">SQL <i class="val">50%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="progress">
-              <span class="skill">C++/MatLab<i class="val">70%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Django / Odoo <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Excel <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Skills Section -->
-
 
 
     <!-- ======= Portfolio Section ======= -->
@@ -232,7 +33,6 @@ Operational Optimization, Data Visualization.</p>
 
         <div class="section-title" data-aos="fade-up">
           <h2>Portfolio</h2>
-
         </div>
 
         <div class="row" data-aos="fade-up">
@@ -263,84 +63,12 @@ Operational Optimization, Data Visualization.</p>
               </div>
             {% endfor %}
 
-
-
         </div>
 
       </div>
     </section><!-- End Portfolio Section -->
 
 
-    <!--
-    <section id="testimonials" class="testimonials">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Testimonials</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="owl-carousel testimonials-carousel" data-aos="fade-up">
-
-          <div class="testimonial-item">
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-            <img src="{% static 'assets/img/testimonials/testimonials-1.jpg' %}" class="testimonial-img" alt="">
-            <h3>Saul Goodman</h3>
-            <h4>Ceo &amp; Founder</h4>
-          </div>
-
-          <div class="testimonial-item">
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-            <img src="{% static 'assets/img/testimonials/testimonials-2.jpg' %}" class="testimonial-img" alt="">
-            <h3>Sara Wilsson</h3>
-            <h4>Designer</h4>
-          </div>
-
-          <div class="testimonial-item">
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-            <img src="{% static 'assets/img/testimonials/testimonials-3.jpg' %}" class="testimonial-img" alt="">
-            <h3>Jena Karlis</h3>
-            <h4>Store Owner</h4>
-          </div>
-
-          <div class="testimonial-item">
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-            <img src="{% static 'assets/img/testimonials/testimonials-4.jpg' %}" class="testimonial-img" alt="">
-            <h3>Matt Brandon</h3>
-            <h4>Freelancer</h4>
-          </div>
-
-          <div class="testimonial-item">
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-            <img src="{% static 'assets/img/testimonials/testimonials-5.jpg' %}" class="testimonial-img" alt="">
-            <h3>John Larson</h3>
-            <h4>Entrepreneur</h4>
-          </div>
-
-        </div>
-
-      </div>
-    </section> ======= Testimonials Section ======= --><!-- End Testimonials Section -->
 
 
 {% include 'footer.html' %}

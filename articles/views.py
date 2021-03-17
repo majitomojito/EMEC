@@ -32,12 +32,11 @@ class ArticleDetail(generic.DetailView):
         return context
 
 def predict_number(request, *args, **kwargs):
+    
     if request.method == 'POST':
         print(request)
         canvas =  request.POST.get('canvas')
         
-
-
         canvas = re.sub('^data:image/.+;base64,', '', canvas)
         #print("canvas", canvas)
         im = Image.open(BytesIO(base64.b64decode(canvas)))
@@ -55,12 +54,6 @@ def predict_number(request, *args, **kwargs):
         im = ((im / 255.0) - 1 ) * -1
         im[im < 0] = 0
         container[0] = im.copy()
-
-        #img.show()
-        #print(container)
-
-        #img = Image.fromarray(container[0]  * 255.0)
-        #img.show()
 
         new_model = keras.models.load_model('path_to_my_model.h5')
         print(new_model)
