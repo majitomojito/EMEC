@@ -1,0 +1,230 @@
+
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+  path {
+    fill: #ddd;
+    fill-opacity: .8;
+    stroke: #fff;
+    stroke-width: 1.5px;
+  }
+  line {
+    stroke: #999;
+  }
+  .selected {
+    fill: red;
+  }
+  /* Style for Custom Tooltip */
+  div.tooltip {   
+    position: absolute;           
+    text-align: center;           
+    width: 60px;                  
+    height: 28px;                 
+    padding: 2px;             
+    font: 12px sans-serif;        
+    background: white;   
+    border: 0px;      
+    border-radius: 8px;           
+    pointer-events: none;         
+  }
+</style>
+<body> 
+<div style="margin-left: 100px; margin-right: 100px; margin-top: 50px; margin-bottom: 50px;" >
+  <div style="display: flex; justify-content: center;  border-style: inset; height: 70%" align="center" id="map_container">
+  </div>
+  <div style="font-family: courier, monospace; margin-left: 100px; margin-right: 100px; margin-top: 50px; margin-bottom: 50px; justify-content: left;" align="left">
+    <font size="4" >
+    <p> 
+    Click on the states</p>
+    <p>
+      My first map with d3js done by modifying </p>
+      <p>
+      <a href=" http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922"> http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922
+    </a></p>
+    <p>
+      The travelling salesman problem (also called the travelling salesperson problem or TSP) asks the following question: <p><strong> "Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?"</strong> </p> It is an NP-hard problem in combinatorial optimization, important in operations research and theoretical computer science.
+    </p>
+    <p>
+    The travelling purchaser problem and the vehicle routing problem are both generalizations of TSP.
+    </p>
+    <p>
+    In the theory of computational complexity, the decision version of the TSP (where given a length L, the task is to decide whether the graph has a tour of at most L) belongs to the class of NP-complete problems. Thus, it is possible that the worst-case running time for any algorithm for the TSP increases superpolynomially (but no more than <strong>exponentially </strong>) with the number of cities.
+    </p>
+    </font>
+  </div>
+</div>
+<div style="margin-left: 100px; margin-right: 100px;">
+  {% include "algorithm_code.html" %}
+</div>
+</body>
+
+<script src="{% static 'javascript/d3.v3.min.js' %}" charset="utf-8"></script>
+<script src="{% static 'javascript/common-functions.js' %}"></script>
+<script src="{% static 'javascript/topojson.v1.min.js' %}"></script>
+<script>
+
+var width = 960,
+    height = 500;
+
+var path = d3.geo.path(),
+    force = d3.layout.force().size([width, height]);
+
+var svg = d3.select("#map_container").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+// Append Div for tooltip to SVG
+var div = d3.select("#map_container")
+        .append("div")   
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+
+
+d3.json("{% static 'javascript/us.json' %}", function(error, us) {
+  if (error) throw error;
+
+  var states = topojson.feature(us, us.objects.states),
+      
+  links = [];
+  nodes = [];
+  states.features.forEach(function(d, i) {
+    if (d.id === 2 || d.id === 15 || d.id === 72) return; // lower 48
+    var centroid = path.centroid(d);
+    if (centroid.some(isNaN)) return;
+    centroid.x = centroid[0];
+    centroid.y = centroid[1];
+    centroid.feature = d;
+    nodes.push(centroid);
+  });
+
+  var selected_states = [];
+  var selected_states_index = [];
+  city_routes = [];
+  
+  var node = svg.selectAll("g")
+    .data(nodes)
+    .enter().append("g")
+      .attr("transform", function(d) { return "translate(" + -d.x + "," + -d.y + ")"; })
+      .call(force.drag)
+    .append("path")
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+      .attr("d", function(d) { return path(d.feature); })
+    .on('click', function(d, i){
+      d3.select(this)
+        .style('fill', 'orange')
+        selected_states.push(nodes[i])
+        selected_states_index.push(i)
+        city_routes = generateCityRoutes(selected_states_index)
+        console.log("city city_routes", city_routes)
+        
+        animation_counter = 0;
+        animateRoutes(city_routes, nodes, selected_states);
+
+
+    })
+
+
+  var nodeselected = svg.select("g").style("color", "blue")
+});
+
+function animateRoutes(city_routes, nodes, selected_states){
+      setTimeout(function (city_routes, nodes, selected_states) {
+        // Do Something Here
+        // Then recall the parent function to
+        // create a recursive loop.
+        console.log("city routes" ,city_routes)
+        if (animation_counter < city_routes.length - 1){
+          svg.selectAll("line").remove()
+          animation_counter ++;
+          console.log("animation_counter", animation_counter)
+          drawRoute([city_routes[animation_counter]], nodes, selected_states);
+          animateRoutes(city_routes, nodes, selected_states);
+        }
+        else{
+          svg.selectAll("line").remove()
+          var route_distances = calculateRouteDistances(city_routes, nodes, selected_states);
+          var shortest_index = indexOfMax(route_distances);
+          var shortest_route = city_routes[shortest_index];
+          drawRoute([shortest_route], nodes, selected_states)
+        }
+      }
+        , Math.round(500/city_routes.length), city_routes, nodes, selected_states);
+}
+
+function calculateRouteDistances(vertices, nodes, selected_nodes){
+      // for every link in every route get the euclidean distance
+      var route_distances = [];
+      for (var k = 0; k < vertices.length; k ++){ // routes
+        var route_distance = 0
+        for (var j = 1; j < selected_nodes.length + 1; j++){ // link
+          var city_u = nodes[vertices[k][j-1]];
+          var city_v = nodes[vertices[k][j]];
+          var city_distance = Math.sqrt(city_u.x * city_v.x + city_u.y * city_v.y)
+          route_distance += city_distance
+        }
+        route_distances.push(route_distance)
+      }
+      return route_distances
+}
+function drawRoute(vertices, nodes, selected_nodes) {
+  // Given an array of vertices wich hold the index 
+  // nodes the coordinates of the city
+  // selected nodes = clicked states
+
+    for (var k = 0; k < vertices.length; k ++){
+      for (var j = 1; j < selected_nodes.length + 1; j++){
+        var line = [];
+        var city_u = nodes[vertices[k][j-1]];
+        var city_v = nodes[vertices[k][j]];
+        line.push(city_u)
+        line.push(city_v)
+        drawLineV2(line)
+    }
+  }
+}
+
+function drawLineV2(nodes){
+   svg.append("line")
+      .attr("x1", nodes[0].x)
+      .attr("y1", nodes[0].y)
+      .attr("x2", nodes[1].x)
+      .attr("y2", nodes[1].y)
+}
+
+ function generatePermutations(Arr){
+  var permutations = [];
+  var A = Arr.slice();
+
+  function swap(a,b){
+    var tmp = A[a];
+    A[a] = A[b];
+    A[b] = tmp;
+  }
+
+  function generate(n, A){
+    if (n == 1){
+      permutations.push(A.slice());
+    } else {
+      for(var i = 0; i <= n-1; i++) {
+        generate(n-1, A);
+        swap(n % 2 == 0 ? i : 0 ,n-1);
+      }
+    }
+  }
+  generate(A.length, A);
+  return permutations;
+}
+
+function generateCityRoutes(cities){
+  var pems = generatePermutations(cities.slice(1));
+  for (var i = 0; i < pems.length; i++){
+    pems[i].unshift(cities[0]);
+    pems[i].push(cities[0]);
+  }
+  return pems;
+}
+
+</script>
+{% endblock %}

@@ -1,0 +1,89 @@
+
+
+{% load static %}
+ <link rel="stylesheet" href="{%static 'style/agency.min.css' %}"> 
+ <link rel="stylesheet" href="{%static 'style/agency.css' %}"> 
+
+   <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+{% block content %}
+<div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="timeline">
+
+<li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/ternium.png' %}" alt="" >
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>June 2019 - October 2019</h4>
+                  <h4 class="subheading">Vauxoo</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted"> 
+            Odoo is an open source ERP software, developed in python,
+            while in Vauxoo I learned how to use source control professionally
+            and docker. 
+                   </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/skysset.png' %}" alt="" >
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>2018-2019</h4>
+                  <h4 class="subheading">SKYSSET</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">
+                    Data Manager. SKYSSET is a Start Up of advanced volumetry, my job consists in administrating
+a data base of photos, 3D models, and clients, developing technology to estimate volumes and
+surfaces based on 3D point clouds. I manipulated pictures to include names of materials, ID´s, 
+volume, and any other relevant information so our clients understand their current inventory not
+only with a number in Excel but also in a visual and credible way.
+The product improved in such a way that our main client is now asking for weekly reports inst.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/ternium.png' %}" alt="" >
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>January 2017</h4>
+                  <h4 class="subheading">TERNIUM</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted"> Supply Chain Full Time Intern. In charge of managing the accounting and logistics of inventory
+in two external warehouses, setting appointments for material delivery with the Just in Time
+philosophy.
+Had to be in constant contact with the internal warehouse and the supply chain area to fit the right
+amount of material and at the same time keep the production at its maximum level. I learned how
+to use Excel in a business level. While I was doing the accounting of the external warehouses,
+also learned how to resume and obtain relevant information from datasheets with thousands of
+part numbers.Finally, learned how to act according to a sale forecast, a production plan, and a
+warehouse space limit. </p>
+                </div>
+              </div>
+            </li>
+
+
+          </ul>
+        </div>
+      </div>
+  </div>
+{% endblock %}
+
+
+

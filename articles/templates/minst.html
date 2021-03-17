@@ -1,0 +1,138 @@
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<div class="container">
+<div class="row">
+    
+
+    <div id="canvas">Click to draw<br/></div>
+    <div class="col-sm-6">
+        <p> Dynamic Graph</p>
+<canvas id="myChart"  height="200px" style="width: 200px; height: 200px"></canvas>
+</div>
+</div>
+<div class="row" style="margin-top: 20px">
+<button onclick="sendInfo()">Send</button>
+<button onclick="eraseCont()">Erase</button>
+</div>
+</div>
+
+
+
+<script type="text/javascript">
+
+
+    // Creates a new canvas element and appends it as a child
+    // to the parent element, and returns the reference to
+    // the newly created canvas element
+
+    var ctx;
+
+    function createCanvas(parent, width, height) {
+        var canvas = {};
+        canvas.node = document.createElement('canvas');
+        canvas.node.style = "border-style: solid"
+        canvas.node.id = "numbox"
+        canvas.context = canvas.node.getContext('2d');
+        canvas.node.width = width || 100;
+        canvas.node.height = height || 100;
+        parent.appendChild(canvas.node);
+        return canvas;
+    }
+
+    function eraseCont(){
+        document.getElementById('numbox').remove();
+        var container = document.getElementById('canvas');
+        init(container, 200, 200, '#fff');
+        chart.data.datasets[0].data = [0, 0, 0, 0, 0, 0, 0, 0,0]
+        chart.update()
+       
+    }
+
+    function init(container, width, height, fillColor) {
+        var canvas = createCanvas(container, width, height);
+
+        ctx = canvas.context;
+        // define a custom fillCircle method
+        ctx.fillCircle = function(x, y, radius, fillColor) {
+            this.fillStyle = fillColor;
+            this.beginPath();
+            this.moveTo(x, y);
+            this.arc(x, y, radius, 0, Math.PI * 2, false);
+            this.fill();
+        };
+        ctx.clearTo = function(fillColor) {
+            ctx.fillStyle = fillColor;
+            ctx.fillRect(0, 0, width, height);
+        };
+        ctx.clearTo(fillColor || "#000");
+
+
+        // bind mouse events
+        canvas.node.onmousemove = function(e) {
+            if (!canvas.isDrawing) {
+               return;
+            }
+            var x = e.pageX - this.offsetLeft;
+            var y = e.pageY - this.offsetTop;
+            var radius = 10; // or whatever
+            var fillColor = '#000000';
+            ctx.fillCircle(x, y, radius, fillColor);
+        };
+        canvas.node.onmousedown = function(e) {
+            canvas.isDrawing = true;
+        };
+        canvas.node.onmouseup = function(e) {
+            canvas.isDrawing = false;
+        };
+    }
+
+    var container = document.getElementById('canvas');
+    init(container, 200, 200, '#fff');
+
+
+function sendInfo(){
+  // split polygon into polygons based on polyne
+  // if polyline complete but drawing manger was started by split option and not floor
+
+    
+    var canvas = document.getElementById('numbox').toDataURL()
+  $.post("{% url 'predict' %}",
+  {
+    csrfmiddlewaretoken: "{{ csrf_token }}",
+    post_type:"split_polygon",
+    canvas: canvas,
+  },
+  function(data){
+    console.log(data.prediction)
+
+    var results = JSON.parse(data.prediction);
+    console.log(results)
+    console.log(chart.data.datasets[0].data)
+    chart.data.datasets[0].data = results
+    chart.update()
+  });
+}
+</script>
+<script type="text/javascript">
+var context = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(context, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 0, 0, 0, 0, 0, 0, 0,0, 0,  ]
+        }]
+    },
+
+    // Configuration options go here
+    options: {responsive: false}
+});
+</script>

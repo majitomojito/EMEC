@@ -1,0 +1,105 @@
+
+
+{% load static %}
+ <link rel="stylesheet" href="{%static 'style/agency.min.css' %}"> 
+ <link rel="stylesheet" href="{%static 'style/agency.css' %}"> 
+
+   <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+{% block content %}
+    <div class="container">
+      <div id="academic_detail" class="row">
+        <div class="col-lg-12">
+          <ul class="timeline">
+            <li data-aos="fade-up">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/udem.jpg' %}" alt="" >
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>2012-2017</h4>
+                  <h4 class="subheading">University of Monterrey</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Thesis with Honors Dec. 2017
+Design a robot capable of navigating a room and map it at the
+same time, implementation of SLAM algorithm in python, and
+real team control of the robot and sensor data visualization.</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/udem.jpg' %}" alt="" >
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>December 2015</h4>
+                  <h4 class="subheading">University of Monterrey</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted"> 1 % Top students of the Bachelor, Recognition granted at the end of every semester based on academic
+performance</p>
+                </div>
+              </div>
+            </li>
+            <li data-aos="fade-up">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/ceneval.jpg' %}" alt="" >
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>December 2017</h4>
+                  <h4 class="subheading">CENEVAL</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted"> Top 1 % Scores in Mexico’s Final Degree Exam</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/chiba.png' %}" alt="" >
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>December 2016</h4>
+                  <h4 class="subheading">University of Chiba,</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">In Chiba University I was an exchange student for one semester, took classes regarding robotics,
+oral expression and globalization (some in Japanese others in English). The second semester I
+participated on Namiki Laboratory of Robotics, where I developed an algorithm to prevent arm
+collision of a humanoid robot.</p>
+                </div>
+              </div>
+            </li>
+            <li data-aos="fade-up">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/rwth.jpg' %}" alt="" >
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>October 2019</h4>
+                  <h4 class="subheading">RWTH Aachen University</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted"> Currently third semester student, taking courses on Machine Learning, Predicting Modelling,
+Operational Optimization, Data Visualization.
+</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </div>
+
+{% endblock %}
+
+
+
